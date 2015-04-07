@@ -2,6 +2,10 @@
   (:require [clojure.test :refer :all]
             [mandelbrot.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest module-of-complex-number-are
+  (testing "Test module calculation"
+    (are [a b expected] (= (module (->Complex a b)) expected)
+      1 0 1.0
+      0 1 1.0
+      0 0 0.0
+      (Math/sqrt 2) (Math/sqrt 14) 4.0)))

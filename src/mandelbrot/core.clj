@@ -1,6 +1,9 @@
 (ns mandelbrot.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(def limit 100)
+
+(defrecord Complex [real imag])
+
+(defn module
+  [{:keys [real imag]}]
+  (Math/sqrt (+ (* real real) (* imag imag))))
