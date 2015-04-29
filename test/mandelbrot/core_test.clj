@@ -9,3 +9,9 @@
       0 1 1.0
       0 0 0.0
       (Math/sqrt 2) (Math/sqrt 14) 4.0)))
+
+(deftest pixel-to-point-resolution
+  (testing "Start of pane should resolve to the beginnig of the plane"
+    (are [x y expected] (= (pixel-to-point x y) expected)
+      0 0 (->Complex -2 1)
+      800 600 (->Complex 1 -1))))
