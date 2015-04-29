@@ -10,9 +10,6 @@
   [{:keys [real imag]}]
   (Math/sqrt (+ (* real real) (* imag imag))))
 
-(defn plus [a b]
-  (Complex. (+ (:real a) (:real b)))
-  )
 
 (defn pixel-to-point [x y]
   (let [min-x (get-in space [:min :real])
@@ -24,8 +21,3 @@
         (Complex. x-pos y-pos)))
 
 (def ptp (memoize pixel-to-point))
-
-(def calculate-escape-time []
-  (for [x (range (:x size)) y (range (:y size)) :let [point (ptp x y)]]
-
-  ))
