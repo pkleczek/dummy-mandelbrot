@@ -22,4 +22,14 @@
         y-pos (- max-y (* y (/ height (:y size))))]
         (Complex. x-pos y-pos)))
 
-(def ptp (memoize pixel-to-point))
+(defn pow [{a :real b :imag}]
+  (Complex. (- (* a a) (* b b)) (* 2 a b)))
+
+
+(defn is-in-set [point]
+  (loop [z (Complex. 0 0) iter 0]
+    (if (< (module z) 2)
+      (if (< iter limit)
+        (recur (add (pow z) point) (inc iter))
+        true)
+      false)))

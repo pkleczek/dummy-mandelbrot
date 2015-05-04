@@ -19,3 +19,11 @@
 (deftest adding-complex-numbers
   (testing "Corresponding parts of complex number should be added"
     (is (= (add (->Complex 1 12) (->Complex -5 9)) (->Complex -4 21)))))
+
+(deftest is-in-set-gives-correct-result
+  (testing "Calculate if crucial points are in Mandelbrot set"
+    (are [a b expected] (= (is-in-set (->Complex a b)) expected)
+      0 0 true
+      0 1 true
+      1 0 false
+      -2 0 false)))
