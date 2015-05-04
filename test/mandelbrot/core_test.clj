@@ -15,3 +15,7 @@
     (are [x y expected] (= (pixel-to-point x y) expected)
       0 0 (->Complex -2 1)
       800 600 (->Complex 1 -1))))
+
+(deftest adding-complex-numbers
+  (testing "Corresponding parts of complex number should be added"
+    (is (= (add (->Complex 1 12) (->Complex -5 9)) (->Complex -4 21)))))

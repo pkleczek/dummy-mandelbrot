@@ -10,6 +10,8 @@
   [{:keys [real imag]}]
   (Math/sqrt (+ (* real real) (* imag imag))))
 
+(defn add [{r1 :real i1 :imag} {r2 :real i2 :imag}]
+  (Complex. (+ r1 r2) (+ i1 i2)))
 
 (defn pixel-to-point [x y]
   (let [min-x (get-in space [:min :real])
