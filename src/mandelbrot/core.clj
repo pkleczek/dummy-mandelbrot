@@ -2,8 +2,8 @@
 
 (defrecord Complex [real imag])
 
-(def limit 100)
-(def size {:x 800 :y 600})
+(def limit 10)
+(def size {:x 200 :y 150})
 (def space {:min (Complex. -2 -1) :max (Complex. 1 1) })
 
 (defn module
@@ -25,7 +25,6 @@
 (defn pow [{a :real b :imag}]
   (Complex. (- (* a a) (* b b)) (* 2 a b)))
 
-
 (defn is-in-set [point]
   (loop [z (Complex. 0 0) iter 0]
     (if (< (module z) 2)
@@ -33,3 +32,13 @@
         (recur (add (pow z) point) (inc iter))
         true)
       false)))
+
+(defn draw-space []
+  (let [frame (java.awt.Frame.) x (:x size) y (:y size) ]
+    (.setVisible frame true)
+    (.setSize frame (java.awt.Dimension. x y))
+    (let [gfx (.getGraphics frame)]
+      (doseq [current-x (range x) current-y (range y) :let [point (pixel-to-point current-x current-y) in-set (is-in-set point)]]
+        (when in-set
+          (.setColor gfx (java.awt.Color. 255 0 255))
+          (.fillRect gfx current-x current-y 1 1))))))
